@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roomly - Alquiler en Tingo María</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: #f8f9fa; color: #333; }
+
+    /* Barra superior */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .navbar img {
+      height: 32px;
+    }
+    .navbar button {
+      padding: 0.5rem 1.2rem;
+      border: none;
+      background: #E55767;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .hero {
+      padding-top: 100px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .categories a {
+      text-decoration: none;
+      color:  #715553;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-content h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .card-content p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .card-content strong {
+      color: #0984e3;
+    }
+
+    .form-section {
+      background: #e8f0fe;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .form-section h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+    .form-section p {
+      margin-bottom: 2rem;
+      color: #555;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    input, select, textarea {
+      padding: 0.8rem;
+      width: 90%;
+      max-width: 450px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #00b894;
+      outline: none;
+    }
+    form button {
+      padding: 0.8rem 2rem;
+      background: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form button:hover {
+      background: #0652DD;
+    }
+
+    #mensaje-exito {
+      background-color: #dff9fb;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    #mensaje-exito h3 {
+      color: #00b894;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    #mensaje-exito p {
+      color: #333;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra fija superior -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="https://img.icons8.com/?size=100&id=msNIPn7UIDyX&format=png&color=000000" alt="Logo">
+      ROOMLY
+    </div>
+    <button onclick="document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' })">
+      ALQUILAR AHORA
+    </button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Busca. Mira. Alquila. Sin vueltas. Sin complicaciones.</h1>
+    <p>Encuentra cuartos y departamentos en Tingo María de forma fácil y rápida.</p>
+  </div>
+
+  <!-- Categorías -->
+  <div class="categories">
+    <a href="#">CUARTOS</a>
+    <a href="#">DEPARTAMENTOS</a>
+    <a href="#">OTROS</a>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards">
+    <div class="card">
+      <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/492036966.jpg?k=3fa40d4155472269f41d9df67024017d63d946d83e1ceb8457520ec972d75b15&o=&hp=1" alt="Cuarto 1">
+      <div class="card-content">
+        <h4>Tingo María Centro</h4>
+        <p>Cuarto amoblado cerca de la universidad.</p>
+        <strong>S/250 al mes</strong>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-53999941/original/00d52d07-75fe-4f89-b85f-e3c9e313db0e.jpeg?im_w=1200" alt="Cuarto 2">
+      <div class="card-content">
+        <h4>Castillo Grande</h4>
+        <p>Mini departamento independiente. Agua caliente.</p>
+        <strong>S/400 al mes</strong>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-53999941/original/0e7627fc-b49d-4688-a37f-613b832e4c79.jpeg?im_w=1200" alt="Cuarto 3">
+      <div class="card-content">
+        <h4>Las Palmas</h4>
+        <p>Habitación con vista al cerro y buena ventilación.</p>
+        <strong>S/300 al mes</strong>
+      </div>
+    </div>
+
+    <div class="card">
+        <img src="https://a0.muscache.com/im/pictures/d6ce61b5-87e5-4f45-b54d-42f2f7ef9a55.jpg?im_w=1440" alt="Cuarto 4">
+        <div class="card-content">
+          <h4>Naranjillo</h4>
+          <p>Mini Departamento</p>
+          <strong>S/900 al mes</strong>
+        </div>
+      </div>
+  </div>
+
+  <!-- Formulario -->
+  <div class="form-section" id="formulario">
+    <h2>¿Te interesa alquilar un cuarto?</h2>
+    <p>Déjanos tus datos y te enviaremos opciones disponibles.</p>
+
+    <!-- Contenedor de éxito -->
+    <div id="mensaje-exito" style="display: none;">
+      <h3>🎉 ¡Gracias por tu interés!</h3>
+      <p>Pronto recibirás información de cuartos disponibles en Tingo María.</p>
+    </div>
+
+    <!-- Formulario -->
+    <form id="formulario-alquiler" action="https://formspree.io/f/mjkynwqn" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo" required>
+      <input type="tel" name="telefono" placeholder="Número de teléfono (opcional)">
+      <select name="tipo-habitacion" required>
+        <option value="">Tipo de habitación</option>
+        <option value="cuarto-individual">Cuarto individual</option>
+        <option value="mini-departamento">Mini departamento</option>
+        <option value="compartido">Compartido</option>
+      </select>
+      <select name="presupuesto">
+        <option value="">Presupuesto aproximado</option>
+        <option value="<250">Menos de S/250</option>
+        <option value="250-400">S/250 - S/400</option>
+        <option value=">400">Más de S/400</option>
+      </select>
+      <textarea name="mensaje" placeholder="¿Qué zona prefieres o tienes alguna necesidad especial?" rows="4"></textarea>
+      <button type="submit">Enviar solicitud</button>
+    </form>
+  </div>
+
+  <script>
+    const formulario = document.getElementById('formulario-alquiler');
+    const mensajeExito = document.getElementById('mensaje-exito');
+
+    formulario.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(formulario);
+      const response = await fetch(formulario.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        formulario.style.display = 'none';
+        mensajeExito.style.display = 'block';
+      } else {
+        alert('Hubo un error al enviar el formulario. Inténtalo nuevamente.');
+      }
+    });
+  </script>
+</body>
+</html>
