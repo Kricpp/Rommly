@@ -273,10 +273,11 @@
   <script>
     const formulario = document.getElementById('formulario-alquiler');
     const mensajeExito = document.getElementById('mensaje-exito');
-
+  
     formulario.addEventListener('submit', async function (e) {
       e.preventDefault();
       const formData = new FormData(formulario);
+  
       const response = await fetch(formulario.action, {
         method: 'POST',
         body: formData,
@@ -284,10 +285,14 @@
           'Accept': 'application/json'
         }
       });
-
+  
       if (response.ok) {
         formulario.style.display = 'none';
         mensajeExito.style.display = 'block';
+  
+        // 🚀 Enviar evento personalizado a Google Tag Manager
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'formulario_enviado_roomly' });
       } else {
         alert('Hubo un error al enviar el formulario. Inténtalo nuevamente.');
       }
